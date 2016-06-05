@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201606051745454_OverrideConventionsForMeetupAndCategories.Designer.cs">
       <DependentUpon>201606051745454_OverrideConventionsForMeetupAndCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606051811484_AddedForeignKeysToMeetup.cs" />
+    <Compile Include="Migrations\201606051811484_AddedForeignKeysToMeetup.Designer.cs">
+      <DependentUpon>201606051811484_AddedForeignKeysToMeetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -281,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606051745454_OverrideConventionsForMeetupAndCategories.resx">
       <DependentUpon>201606051745454_OverrideConventionsForMeetupAndCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051811484_AddedForeignKeysToMeetup.resx">
+      <DependentUpon>201606051811484_AddedForeignKeysToMeetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
