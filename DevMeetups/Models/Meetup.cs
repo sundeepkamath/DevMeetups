@@ -7,8 +7,10 @@ namespace DevMeetups.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public ApplicationUser Developer { get; set; }
+
+        [Required]
+        public string DeveloperId { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -21,6 +23,8 @@ namespace DevMeetups.Models
         public string Venue { get; set; }
 
         [Required]
+        public byte CategoryId { get; set; }
+        
         public Category Category { get; set; }
     }
 }
