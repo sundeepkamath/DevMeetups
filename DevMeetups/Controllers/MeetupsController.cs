@@ -36,7 +36,7 @@ namespace DevMeetups.Controllers
             {
                 Topic = viewModel.Topic,
                 Venue = viewModel.Venue,
-                DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+                DateTime = viewModel.DateTime,
                 DeveloperId = User.Identity.GetUserId(),
                 CategoryId = viewModel.Category
             };
