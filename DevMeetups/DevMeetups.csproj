@@ -177,10 +177,21 @@
     <Compile Include="Migrations\201606051117029_InitialModel.Designer.cs">
       <DependentUpon>201606051117029_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606051237406_CreateMeetupTable.cs" />
+    <Compile Include="Migrations\201606051237406_CreateMeetupTable.Designer.cs">
+      <DependentUpon>201606051237406_CreateMeetupTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606051303322_PopulateCategoriesTable.cs" />
+    <Compile Include="Migrations\201606051303322_PopulateCategoriesTable.Designer.cs">
+      <DependentUpon>201606051303322_PopulateCategoriesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Meetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -254,6 +265,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606051117029_InitialModel.resx">
       <DependentUpon>201606051117029_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051237406_CreateMeetupTable.resx">
+      <DependentUpon>201606051237406_CreateMeetupTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051303322_PopulateCategoriesTable.resx">
+      <DependentUpon>201606051303322_PopulateCategoriesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
