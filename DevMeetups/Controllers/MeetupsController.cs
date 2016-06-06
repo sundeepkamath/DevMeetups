@@ -1,7 +1,6 @@
 using DevMeetups.Models;
 using DevMeetups.ViewModels;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -30,13 +29,17 @@ namespace DevMeetups.Controllers
         [HttpPost]
         public ActionResult Create(MeetupsFormViewModel viewModel)
         {
-            var categoryId = _context.Categories.Single(c => c.Id == viewModel.Category);
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = _context.Categories.ToList();
+                return View("Create", viewModel);
+            }
 
             var meetup = new Meetup
             {
                 Topic = viewModel.Topic,
                 Venue = viewModel.Venue,
-                DateTime = viewModel.DateTime,
+                DateTime = viewModel.GetDateTime(),
                 DeveloperId = User.Identity.GetUserId(),
                 CategoryId = viewModel.Category
             };
