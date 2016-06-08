@@ -27,6 +27,7 @@ namespace DevMeetups.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(MeetupsFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
