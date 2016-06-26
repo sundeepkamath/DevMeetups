@@ -4,9 +4,26 @@
     ViewBag.Title = "Home Page";
 }
 
-<ul>
-    @foreach (var m in Model)
+<ul class="meetups">
+    @foreach (var meetup in Model)
     {
-        <li>@m.DateTime - @m.Developer.Name</li>
+        <li>
+            <div class="date">
+                <div class="month">
+                    @meetup.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @meetup.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="developer">
+                    @meetup.Developer.Name
+                </span>
+                <span class="category">
+                    @meetup.Category.Name
+                </span>
+            </div>
+        </li>
     }
 </ul>
