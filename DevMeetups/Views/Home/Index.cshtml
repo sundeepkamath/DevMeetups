@@ -23,7 +23,28 @@
                 <span class="category">
                     @meetup.Category.Name
                 </span>
+                <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
             </div>
         </li>
     }
 </ul>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-attendance-toggle").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/attendances", { "meetupId": button.attr("data-meetup-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+            });
+        });
+    </script>
+}

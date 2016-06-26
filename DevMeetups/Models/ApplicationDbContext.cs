@@ -7,6 +7,7 @@ namespace DevMeetups.Models
     {
         public DbSet<Meetup> Meetups { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -16,6 +17,16 @@ namespace DevMeetups.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Attendance>()
+                .HasRequired(a => a.Meetup)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
