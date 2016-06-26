@@ -194,13 +194,25 @@
     <Compile Include="Migrations\201606051811484_AddedForeignKeysToMeetup.Designer.cs">
       <DependentUpon>201606051811484_AddedForeignKeysToMeetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606260833237_AddedNamePropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201606260833237_AddedNamePropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201606260833237_AddedNamePropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Meetup.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\FutureDateAttribute.cs" />
@@ -290,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606051811484_AddedForeignKeysToMeetup.resx">
       <DependentUpon>201606051811484_AddedForeignKeysToMeetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606260833237_AddedNamePropertyToApplicationUser.resx">
+      <DependentUpon>201606260833237_AddedNamePropertyToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

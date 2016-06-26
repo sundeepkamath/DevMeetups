@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevMeetups.Models;
+using System.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,20 @@ namespace DevMeetups.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext _context;
+
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var meetups = _context.Meetups
+                .Include(m => m.Developer)
+                .Where(m => m.DateTime > DateTime.Now);
+
+            return View(meetups);
         }
 
         public ActionResult About()
