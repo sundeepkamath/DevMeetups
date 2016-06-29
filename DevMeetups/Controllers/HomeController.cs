@@ -26,10 +26,11 @@ namespace DevMeetups.Controllers
             var viewModel = new MeetupsViewModel
             {
                 UpcomingMeetups = meetups,
-                ShowActions = User.Identity.IsAuthenticated
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Upcoming Meetups"
             };
 
-            return View(viewModel);
+            return View("Meetups", viewModel);
         }
 
         public ActionResult About()
