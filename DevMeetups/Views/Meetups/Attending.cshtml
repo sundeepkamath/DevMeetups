@@ -1,8 +1,9 @@
 ﻿@model DevMeetups.ViewModels.MeetupsViewModel
-
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Attending";
 }
+
+<h2>Attending</h2>
 
 <ul class="meetups">
     @foreach (var meetup in Model.UpcomingMeetups)
@@ -23,7 +24,7 @@
                 <span class="category">
                     @meetup.Category.Name
                 </span>
-                @if(Model.ShowActions)
+                @if (Model.ShowActions)
                 {
                     <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
                     <btn data-user-id="@meetup.DeveloperId" class="btn btn-link btn-sm js-following-toggle">Follow</btn>
@@ -63,3 +64,4 @@
         });
     </script>
 }
+

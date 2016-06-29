@@ -1,6 +1,7 @@
 using DevMeetups.Models;
 using DevMeetups.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -51,5 +52,24 @@ namespace DevMeetups.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var meetups = _context.Attendances
+                                .Where(a => a.AttendeeId == userId)
+                                .Select(a => a.Meetup)
+                                .Include(m => m.Developer)
+                                .Include(m => m.Category)
+                                .ToList();
+
+            var meetupsViewModel = new MeetupsViewModel
+            {
+                UpcomingMeetups = meetups,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(meetupsViewModel);
+        }
     }
 }
