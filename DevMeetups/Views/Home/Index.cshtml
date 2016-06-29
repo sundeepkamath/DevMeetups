@@ -24,6 +24,7 @@
                     @meetup.Category.Name
                 </span>
                 <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
+                <btn data-user-id="@meetup.DeveloperId" class="btn btn-link btn-sm js-following-toggle">Follow</btn>
             </div>
         </li>
     }
@@ -40,6 +41,17 @@
                             .removeClass("btn-default")
                             .addClass("btn-info")
                             .text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+            });
+
+            $(".js-following-toggle").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", {"followeeId" : button.attr("data-user-id")})
+                    .done(function () {
+                        button.text("Following");
                     })
                     .fail(function () {
                         alert("Something failed!");
