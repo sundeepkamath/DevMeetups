@@ -1,9 +1,8 @@
 ﻿using DevMeetups.Models;
-using System.Data.Entity;
+using DevMeetups.ViewModels;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DevMeetups.Controllers
@@ -24,7 +23,13 @@ namespace DevMeetups.Controllers
                 .Include(m => m.Category)
                 .Where(m => m.DateTime > DateTime.Now);
 
-            return View(meetups);
+            var viewModel = new HomeViewModel
+            {
+                UpcomingMeetups = meetups,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult About()

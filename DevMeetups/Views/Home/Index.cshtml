@@ -1,11 +1,11 @@
-﻿@model IEnumerable<DevMeetups.Models.Meetup>
+﻿@model DevMeetups.ViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 
 <ul class="meetups">
-    @foreach (var meetup in Model)
+    @foreach (var meetup in Model.UpcomingMeetups)
     {
         <li>
             <div class="date">
@@ -23,8 +23,11 @@
                 <span class="category">
                     @meetup.Category.Name
                 </span>
-                <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
-                <btn data-user-id="@meetup.DeveloperId" class="btn btn-link btn-sm js-following-toggle">Follow</btn>
+                @if(Model.ShowActions)
+                {
+                    <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
+                    <btn data-user-id="@meetup.DeveloperId" class="btn btn-link btn-sm js-following-toggle">Follow</btn>
+                }
             </div>
         </li>
     }
@@ -49,7 +52,7 @@
 
             $(".js-following-toggle").click(function (e) {
                 var button = $(e.target);
-                $.post("/api/followings", {"followeeId" : button.attr("data-user-id")})
+                $.post("/api/followings", { "followeeId": button.attr("data-user-id") })
                     .done(function () {
                         button.text("Following");
                     })
