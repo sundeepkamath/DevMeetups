@@ -21,7 +21,7 @@ namespace DevMeetups.Controllers
             var meetups = _context.Meetups
                 .Include(m => m.Developer)
                 .Include(m => m.Category)
-                .Where(m => m.DateTime > DateTime.Now);
+                .Where(m => m.DateTime > DateTime.Now && !m.IsCancelled);
 
             var viewModel = new MeetupsViewModel
             {

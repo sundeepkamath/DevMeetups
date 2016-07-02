@@ -19,15 +19,24 @@
                 </div>
             </div>
             <div class="details">
-                <span class="developer">
-                    @meetup.Developer.Name
-                </span>
+                <div>
+                    <span class="developer">
+                        @meetup.Developer.Name
+                    </span>
+                    @if (@meetup.IsCancelled)
+                    {
+                        <span class="label label-warning">Cancelled</span>
+                    }
+                </div>
                 <span class="category">
                     @meetup.Category.Name
                 </span>
-                @if(Model.ShowActions)
+                @if (Model.ShowActions)
                 {
-                    <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
+                    if (!meetup.IsCancelled)
+                    {
+                        <btn data-meetup-id="@meetup.Id" class="btn btn-default btn-sm js-attendance-toggle">Going ?</btn>
+                    }
                     <btn data-user-id="@meetup.DeveloperId" class="btn btn-link btn-sm js-following-toggle">Follow</btn>
                 }
             </div>

@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 
-namespace DevMeetups.Controllers
+namespace DevMeetups.Controllers.Api
 {
     [Authorize]
     public class FollowingsController : ApiController

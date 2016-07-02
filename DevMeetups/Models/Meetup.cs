@@ -7,6 +7,8 @@ namespace DevMeetups.Models
     {
         public int Id { get; set; }
 
+        public bool IsCancelled { get; set; }
+
         public ApplicationUser Developer { get; set; }
 
         [Required]

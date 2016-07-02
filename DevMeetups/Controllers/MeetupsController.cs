@@ -21,7 +21,7 @@ namespace DevMeetups.Controllers
         {
             var userId = User.Identity.GetUserId();
             var myMeetups = _context.Meetups
-                            .Where(m => m.DeveloperId == userId && m.DateTime > DateTime.Now)
+                            .Where(m => m.DeveloperId == userId && m.DateTime > DateTime.Now && !m.IsCancelled)
                             .Include(m => m.Category)
                             .ToList();
 

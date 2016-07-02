@@ -27,9 +27,52 @@
                     @meetup.Category.Name
                 </span>
                 <div class="actions">
-                    <a href="@Url.Action("Edit","Meetups", new { meetupId = meetup.Id })">Edit</a>
+                    <a href="@Url.Action("Edit","Meetups", new { meetupId = meetup.Id })">Edit</a>|
+                    <a href="#" class="js-meetup-cancel" data-meetup-id="@meetup.Id">Cancel</a>
                 </div>
             </div>
         </li>
     }
 </ul>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-meetup-cancel").click(function (e) {
+                var target = $(e.target);
+
+                bootbox.dialog({
+                    message: "Are you sure you want to cancel this meetup?",
+                    title: "Confirm",
+                    buttons: {
+                        no: {
+                            label: "No",
+                            className: "btn-default",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/meetups/" + target.attr("data-meetup-id"),
+                                    method: "DELETE"
+                                })
+                                .done(function () {
+                                    target.parents("li").fadeOut(function () {
+                                        $(this).remove();
+                                    });
+                                })
+                                .fail(function () {
+                                    alert("Something failed!");
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
