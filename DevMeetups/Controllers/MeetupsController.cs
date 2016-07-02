@@ -1,6 +1,7 @@
 using DevMeetups.Models;
 using DevMeetups.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,6 +15,17 @@ namespace DevMeetups.Controllers
         public MeetupsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var myMeetups = _context.Meetups
+                            .Where(m => m.DeveloperId == userId && m.DateTime > DateTime.Now)
+                            .Include(m => m.Category)
+                            .ToList();
+
+            return View(myMeetups);
         }
 
         [Authorize]
@@ -49,7 +61,7 @@ namespace DevMeetups.Controllers
             _context.Meetups.Add(meetup);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Meetups");
         }
 
         [Authorize]
