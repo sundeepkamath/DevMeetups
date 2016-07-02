@@ -26,6 +26,9 @@
                 <span class="category">
                     @meetup.Category.Name
                 </span>
+                <div class="actions">
+                    <a href="@Url.Action("Edit","Meetups", new { meetupId = meetup.Id })">Edit</a>
+                </div>
             </div>
         </li>
     }

@@ -303,7 +303,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Meetups\Create.cshtml" />
+    <Content Include="Views\Meetups\MeetupForm.cshtml" />
     <Content Include="Views\Followees\Index.cshtml" />
     <Content Include="Views\Meetups\Mine.cshtml" />
   </ItemGroup>

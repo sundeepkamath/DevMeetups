@@ -29,13 +29,35 @@ namespace DevMeetups.Controllers
         }
 
         [Authorize]
+        public ActionResult Edit(int meetupId)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var meetupData = _context.Meetups.Single(m => m.Id == meetupId && m.DeveloperId == userId);
+
+            var viewModel = new MeetupsFormViewModel
+            {
+                Categories = _context.Categories.ToList(),
+                Category = meetupData.CategoryId,
+                Date = meetupData.DateTime.ToString("d MMM yyyy"),
+                Time = meetupData.DateTime.ToString("HH:mm"),
+                Topic = meetupData.Topic,
+                Venue = meetupData.Venue,
+                Heading = "Edit a meetup",
+                Id = meetupData.Id
+            };
+            return View("MeetupForm", viewModel);
+        }
+
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new MeetupsFormViewModel
             {
+                Heading = "Add a Meetup",
                 Categories = _context.Categories.ToList()
             };
-            return View(viewModel);
+            return View("MeetupForm", viewModel);
         }
 
         [Authorize]
@@ -46,7 +68,7 @@ namespace DevMeetups.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Categories = _context.Categories.ToList();
-                return View("Create", viewModel);
+                return View("MeetupForm", viewModel);
             }
 
             var meetup = new Meetup
@@ -59,6 +81,31 @@ namespace DevMeetups.Controllers
             };
 
             _context.Meetups.Add(meetup);
+            _context.SaveChanges();
+
+            return RedirectToAction("Mine", "Meetups");
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(MeetupsFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = _context.Categories.ToList();
+                return View("MeetupForm", viewModel);
+            }
+
+            var userId = User.Identity.GetUserId();
+
+            var meetup = _context.Meetups.Single(m => m.Id == viewModel.Id && m.DeveloperId == userId);
+            meetup.Topic = viewModel.Topic;
+            meetup.Venue = viewModel.Venue;
+            meetup.CategoryId = viewModel.Category;
+            meetup.DateTime = viewModel.GetDateTime();
+
+
             _context.SaveChanges();
 
             return RedirectToAction("Mine", "Meetups");
