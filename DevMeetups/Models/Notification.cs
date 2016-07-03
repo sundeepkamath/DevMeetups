@@ -11,9 +11,9 @@ namespace DevMeetups.Models
 
         public DateTime DateTime { get; private set; }
 
-        public DateTime? OriginalDateTime { get; set; }
+        public DateTime? OriginalDateTime { get; private set; }
 
-        public string OriginalVenue { get; set; }
+        public string OriginalVenue { get; private set; }
 
         [Required]
         public Meetup Meetup { get; private set; }
@@ -23,7 +23,7 @@ namespace DevMeetups.Models
 
         }
 
-        public Notification(Meetup meetup, NotificationType notificationType)
+        private Notification(Meetup meetup, NotificationType notificationType)
         {
             if (meetup == null)
                 throw new ArgumentNullException("meetup");
@@ -31,6 +31,25 @@ namespace DevMeetups.Models
             Meetup = meetup;
             NotificationType = notificationType;
             DateTime = DateTime.Now;
+        }
+
+        public static Notification MeetupCreated(Meetup meetup)
+        {
+            return new Notification(meetup, NotificationType.MeetupAdded);
+        }
+
+        public static Notification MeetupUpdated(Meetup newMeetup, DateTime originalDateTime, string originalVenue)
+        {
+            var notification = new Notification(newMeetup, NotificationType.MeetupUpdated);
+            notification.OriginalDateTime = originalDateTime;
+            notification.OriginalVenue = originalVenue;
+
+            return notification;
+        }
+
+        public static Notification MeetupCancelled(Meetup meetup)
+        {
+            return new Notification(meetup, NotificationType.MeetupCancelled);
         }
     }
 }

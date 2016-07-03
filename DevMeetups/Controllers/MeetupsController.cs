@@ -99,12 +99,19 @@ namespace DevMeetups.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            var meetup = _context.Meetups.Single(m => m.Id == viewModel.Id && m.DeveloperId == userId);
-            meetup.Topic = viewModel.Topic;
-            meetup.Venue = viewModel.Venue;
-            meetup.CategoryId = viewModel.Category;
-            meetup.DateTime = viewModel.GetDateTime();
+            var meetup = _context.Meetups
+                            .Include(m => m.Attendances.Select(a => a.Attendee))
+                            .Single(m => m.Id == viewModel.Id && m.DeveloperId == userId);
 
+            var modifiedMeetup = new Meetup
+            {
+                Topic = viewModel.Topic,
+                Venue = viewModel.Venue,
+                CategoryId = viewModel.Category,
+                DateTime = viewModel.GetDateTime()
+            };
+
+            meetup.Update(modifiedMeetup);
 
             _context.SaveChanges();
 

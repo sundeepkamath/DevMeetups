@@ -38,7 +38,7 @@ namespace DevMeetups.Models
         {
             IsCancelled = true;
 
-            var notification = new Notification(this, NotificationType.MeetupCancelled);
+            var notification = Notification.MeetupCancelled(this);
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
             {
@@ -49,6 +49,21 @@ namespace DevMeetups.Models
         public Meetup()
         {
             Attendances = new Collection<Attendance>();
+        }
+
+        internal void Update(Meetup newMeetup)
+        {
+            var notification = Notification.MeetupUpdated(this, DateTime, Venue);
+
+            Topic = newMeetup.Topic;
+            Venue = newMeetup.Venue;
+            Category = newMeetup.Category;
+            DateTime = newMeetup.DateTime;
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+            {
+                attendee.Notify(notification);
+            }
         }
     }
 }
