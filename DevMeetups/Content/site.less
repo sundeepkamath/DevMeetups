@@ -1,0 +1,216 @@
+﻿body {
+    padding-top: 90px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 20px;
+}
+
+.voffset4 {
+    margin-top: 40px;
+}
+
+.voffset5 {
+    margin-top: 80px;
+}
+
+/* Bootstrap overrides*/
+
+body {
+    font-size: 17px;
+}
+
+.popover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.navbar-inverse {
+    background-color: #ff4342;
+    border-color: #ff4342;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .notifications {
+    position: relative;
+}
+
+.navbar-inverse .notifications .badge {
+    position: absolute;
+    top: 8px;
+    right: -1px;
+    background: #a80a0a;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: rgba(205, 40, 39, 0.55);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: Lato,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-control {
+    font-size: 17px;
+    height: 44px;
+    /*padding:6px 15px;*/
+    border-radius: 9px;
+}
+
+.btn {
+    /*font-size:17px;*/
+    /*padding:7px 20px;*/
+    border-radius: 9px;
+}
+
+.form-control:focus {
+    border-color: #2196f3;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.dropdown-menu {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+/* Page level styles */
+
+.meetups {
+    list-style: none;
+
+
+    > li {
+        position: relative;
+        margin-bottom: 30px;
+
+
+        .details {
+            position: absolute;
+            top: 0px;
+            left: 70px;
+
+            .developer {
+                font-weight: bold;
+            }
+
+            .category {
+                font-size: 15px;
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
+        .date {
+            background: red;
+            color: white;
+            width: 60px;
+            text-align: center;
+            border-radius: 8px;
+
+
+            .month {
+                text-transform: uppercase;
+                padding: 4px 12px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .day {
+                background: #f7f7f7;
+                color: #333;
+                padding: 10px 18px;
+                font-size: 20px;
+            }
+        }
+
+        .actions {
+            font-size: 15px;
+            display: none;
+        }
+    }
+
+    > li:hover .actions {
+        display: block;
+    }
+}
+
+.popover-notifications {
+    .popover-content {
+        padding: 0;
+    }
+
+    ul.notifications {
+        list-style: none;
+        padding-left: 0;
+
+        > li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        > li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+    }
+}

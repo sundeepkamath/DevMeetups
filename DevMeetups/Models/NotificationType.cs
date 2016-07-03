@@ -2,8 +2,8 @@ namespace DevMeetups.Models
 {
     public enum NotificationType
     {
-        MeetupCancelled,
-        MeetupUpdated,
-        MeetupAdded
+        MeetupCancelled = 1,
+        MeetupUpdated = 2,
+        MeetupAdded = 3
     }
 }
