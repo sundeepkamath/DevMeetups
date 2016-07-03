@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace DevMeetups.Models
 {
@@ -7,7 +10,7 @@ namespace DevMeetups.Models
     {
         public int Id { get; set; }
 
-        public bool IsCancelled { get; set; }
+        public bool IsCancelled { get; private set; }
 
         public ApplicationUser Developer { get; set; }
 
@@ -28,5 +31,24 @@ namespace DevMeetups.Models
         public byte CategoryId { get; set; }
         
         public Category Category { get; set; }
+
+        public ICollection<Attendance> Attendances { get; private set; }
+
+        internal void Cancel()
+        {
+            IsCancelled = true;
+
+            var notification = new Notification(this, NotificationType.MeetupCancelled);
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+            {
+                attendee.Notify(notification);
+            }
+        }
+
+        public Meetup()
+        {
+            Attendances = new Collection<Attendance>();
+        }
     }
 }

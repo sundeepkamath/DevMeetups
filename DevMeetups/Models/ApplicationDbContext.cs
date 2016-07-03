@@ -9,6 +9,8 @@ namespace DevMeetups.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Following> Followings{ get; set; }
+        public DbSet<UserNotification> UserNotfications { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -24,7 +26,7 @@ namespace DevMeetups.Models
         {
             modelBuilder.Entity<Attendance>()
                 .HasRequired(a => a.Meetup)
-                .WithMany()
+                .WithMany(m => m.Attendances)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
@@ -35,6 +37,11 @@ namespace DevMeetups.Models
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.Followees)
                 .WithRequired(f => f.Follower)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserNotification>()
+                .HasRequired(n => n.User)
+                .WithMany(u => u.UserNotifications)
                 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

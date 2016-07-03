@@ -229,12 +229,19 @@
     <Compile Include="Migrations\201607021723122_AddIsCancelledToMeetup.Designer.cs">
       <DependentUpon>201607021723122_AddIsCancelledToMeetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607030813070_AddNotificationModels.cs" />
+    <Compile Include="Migrations\201607030813070_AddNotificationModels.Designer.cs">
+      <DependentUpon>201607030813070_AddNotificationModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Following.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
@@ -351,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607021723122_AddIsCancelledToMeetup.resx">
       <DependentUpon>201607021723122_AddIsCancelledToMeetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607030813070_AddNotificationModels.resx">
+      <DependentUpon>201607030813070_AddNotificationModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
