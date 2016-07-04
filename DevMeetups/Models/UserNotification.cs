@@ -18,7 +18,7 @@ namespace DevMeetups.Models
 
         public Notification Notification { get; private set; }
 
-        public bool IsRead { get; set; }
+        public bool IsRead { get; private set; }
 
         protected UserNotification()
         {
@@ -35,6 +35,11 @@ namespace DevMeetups.Models
 
             User = user;
             Notification = notification;
+        }
+
+        internal void Read()
+        {
+            this.IsRead = true;
         }
     }
 }

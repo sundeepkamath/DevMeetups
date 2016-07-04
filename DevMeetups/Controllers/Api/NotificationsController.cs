@@ -30,5 +30,21 @@ namespace DevMeetups.Controllers.Api
 
             return notifications.Select(Mapper.Map<Notification, NotificationDto>);
         }
+
+        [HttpPost]
+        public IHttpActionResult MarkNotificationsRead()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var notifications = _context.UserNotfications
+                                    .Where(u => u.UserId == userId && !u.IsRead)
+                                    .ToList();
+
+            notifications.ForEach(n => n.Read());
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }
