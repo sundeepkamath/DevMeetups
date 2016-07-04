@@ -6,9 +6,22 @@
 }
 
 <h1>@Model.Heading</h1>
+
+@using (Html.BeginForm("Search", "Home"))
+{
+    <div class="form-group">
+        <div id="searchTerm" class="input-group">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder="search by topic, developer, venue..." })
+            <span class="input-group-addon" id="basic-addon2">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
+}
+
 <ul class="meetups voffset4">
     @foreach (var meetup in Model.UpcomingMeetups)
-    {
+            {
         <li>
             <div class="date">
                 <div class="month">

@@ -8,5 +8,6 @@ namespace DevMeetups.ViewModels
         public bool ShowActions { get; set; }
         public IEnumerable<Meetup> UpcomingMeetups { get; set; }
         public string Heading { get; set; }
+        public string SearchTerm { get; set; }
     }
 }
