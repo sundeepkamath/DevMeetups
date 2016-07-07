@@ -34,7 +34,7 @@
             <div class="details">
                 <div>
                     <span class="developer">
-                        @meetup.Developer.Name
+                        <a href="@Url.Action("Details", "Meetups", new { meetupId = meetup.Id })">@meetup.Developer.Name</a>
                     </span>
                     @if (@meetup.IsCancelled)
                     {

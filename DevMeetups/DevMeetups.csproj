@@ -256,6 +256,7 @@
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\MeetupDetailsViewModel.cs" />
     <Compile Include="ViewModels\MeetupsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -342,6 +343,7 @@
     <Content Include="Views\Meetups\MeetupForm.cshtml" />
     <Content Include="Views\Followees\Index.cshtml" />
     <Content Include="Views\Meetups\Mine.cshtml" />
+    <Content Include="Views\Meetups\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

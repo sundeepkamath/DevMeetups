@@ -28,6 +28,31 @@ namespace DevMeetups.Controllers
             return View(myMeetups);
         }
 
+        public ActionResult Details(int meetupId)
+        {
+            var meetup = _context.Meetups
+                                .Include(m => m.Developer)
+                                .Include(m => m.Category)
+                                .Single(m => m.Id == meetupId);
+
+
+            if (meetup == null)
+                return HttpNotFound();
+
+            var viewModel = new MeetupDetailsViewModel { Meetup = meetup};
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                viewModel.Attending = _context.Attendances.Any(a => a.MeetupId == meetupId && a.AttendeeId == userId);
+                viewModel.Following = _context.Followings.Any(f => f.FolloweeId == meetup.DeveloperId && f.FollowerId == userId);
+            }
+
+
+            return View("Details", viewModel);
+        }
+
         [Authorize]
         public ActionResult Edit(int meetupId)
         {
